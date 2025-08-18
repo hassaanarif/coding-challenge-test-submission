@@ -21,7 +21,7 @@ code {
   --color-brand: #413ef7;
   --color-text: #141925;
   --color-text-light: #72787d;
-  --width-input: 20rem;
+  --width-input: 100%;
   --width-content: 30rem;
 }
 

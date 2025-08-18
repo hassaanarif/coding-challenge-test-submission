@@ -2,10 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import generateMockAddresses from "../../src/utils/generateMockAddresses";
 
-export default async function handle(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const {
     query: { postcode, streetnumber },
   } = req;
@@ -18,7 +15,9 @@ export default async function handle(
     });
   }
 
-  if (postcode.length < 4) {
+  const MIN_POSTCODE_LENGTH = 4;
+
+  if (postcode.length < MIN_POSTCODE_LENGTH) {
     return res.status(400).send({
       status: "error",
       // DO NOT MODIFY MSG - used for grading
@@ -26,14 +25,8 @@ export default async function handle(
     });
   }
 
-  /** TODO: Implement the validation logic to ensure input value
-   *  is all digits and non negative
-   */
-  const isStrictlyNumeric = (value: string) => {
-    return true;
-  };
+  const isStrictlyNumeric = (value: string) => !isNaN(Number(value)) && Number(value) >= 0;
 
-  /** TODO: Refactor the code below so there is no duplication of logic for postCode/streetNumber digit checks. */
   if (!isStrictlyNumeric(postcode as string)) {
     return res.status(400).send({
       status: "error",
@@ -48,10 +41,7 @@ export default async function handle(
     });
   }
 
-  const mockAddresses = generateMockAddresses(
-    postcode as string,
-    streetnumber as string
-  );
+  const mockAddresses = generateMockAddresses(postcode as string, streetnumber as string);
   if (mockAddresses) {
     const timeout = (ms: number) => {
       return new Promise((resolve) => setTimeout(resolve, ms));
