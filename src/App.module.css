@@ -4,5 +4,11 @@
 }
 
 .formRow {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.75em;
+}
+
+@media (min-width: 768px) {
+  .formRow {
+    margin-bottom: 0.5em;
+  }
 }

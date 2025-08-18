@@ -20,6 +20,31 @@
   transform: scale(0.95);
 }
 
-/** TODO: Create separate styles for .primary and .secondary variants of this button:
-* - Must use the CSS variables declared in App.css
-*/
+.primary {
+  background-color: var(--color-brand);
+  border: 2px solid var(--color-brand);
+}
+
+.primary:hover {
+  background-color: #352fd8;
+  border-color: #352fd8;
+}
+
+.secondary {
+  background-color: transparent;
+  border: 2px solid var(--color-brand);
+  color: var(--color-brand);
+}
+
+.secondary:hover {
+  background-color: var(--color-brand);
+  color: white;
+}
+
+/* Responsive adjustments for buttons */
+@media (max-width: 767px) {
+  .button {
+    font-size: 0.85em;
+    padding: 0.6em 1em;
+  }
+}
