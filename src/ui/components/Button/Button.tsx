@@ -9,6 +9,7 @@ interface ButtonProps {
   variant?: ButtonVariant;
   loading?: boolean;
   children: React.ReactNode;
+  className?: string;
 }
 
 const Button: FunctionComponent<ButtonProps> = ({
@@ -17,8 +18,11 @@ const Button: FunctionComponent<ButtonProps> = ({
   type = "button",
   variant = "primary",
   loading = false,
+  className = "",
 }) => {
-  const buttonClasses = [$.button, variant === "primary" ? $.primary : $.secondary].filter(Boolean).join(" ");
+  const buttonClasses = [$.button, variant === "primary" ? $.primary : $.secondary, className]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <button className={buttonClasses} type={type} onClick={onClick}>

@@ -1,12 +1,12 @@
 import React from "react";
 import { useAppSelector } from "../../../core/store/hooks";
 
+import { selectAddress } from "../../../core/reducers/addressBookSlice";
 import useAddressBook from "../../hooks/useAddressBook";
 import Address from "../Address/Address";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
 import $ from "./AddressBook.module.css";
-import { selectAddress } from "../../../core/reducers/addressBookSlice";
 
 const AddressBook = () => {
   const addresses = useAppSelector(selectAddress);
@@ -35,10 +35,7 @@ const AddressBook = () => {
                     <Address {...address} />
                   </div>
                   <div className={$.remove}>
-                    <Button
-                      variant="secondary"
-                      onClick={() => removeAddress(address.id)}
-                    >
+                    <Button variant="secondary" onClick={() => removeAddress(address.id)}>
                       Remove
                     </Button>
                   </div>

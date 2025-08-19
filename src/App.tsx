@@ -127,11 +127,22 @@ function App() {
       return;
     }
 
+    // Check for duplicate addresses (same postcode, house number, first name, and last name)
+    const isDuplicate = addresses.some(
+      (addr) =>
+        addr.postcode === foundAddress.postcode &&
+        addr.houseNumber === foundAddress.houseNumber &&
+        addr.firstName === firstName.trim() &&
+        addr.lastName === lastName.trim()
+    );
+
+    if (isDuplicate) {
+      setError("This address with the same person is already in your address book!");
+      return;
+    }
+
     addAddress({ ...foundAddress, firstName: firstName.trim(), lastName: lastName.trim() });
 
-    // Clear form after successful submission
-    clearAllFields();
-    setAddresses([]);
     setError(undefined);
   };
 

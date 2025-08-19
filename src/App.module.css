@@ -44,3 +44,33 @@
   margin-top: 1.5rem;
   text-align: center;
 }
+
+.addressItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background: var(--color-background);
+  border-radius: var(--border-radius-default);
+  border: 1px solid var(--color-accent);
+}
+
+.removeButton {
+  flex-shrink: 0;
+  min-width: 80px;
+  padding: 0.4em 0.8em;
+  font-size: 0.8em;
+}
+
+@media (max-width: 767px) {
+  .addressItem {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .removeButton {
+    align-self: flex-end;
+  }
+}

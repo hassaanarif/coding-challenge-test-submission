@@ -1,11 +1,6 @@
-import {
-  addAddress,
-  removeAddress,
-  selectAddress,
-  updateAddresses,
-} from "../../core/reducers/addressBookSlice";
 import { Address } from "@/types";
 import React from "react";
+import { addAddress, removeAddress, selectAddress, updateAddresses } from "../../core/reducers/addressBookSlice";
 import { useAppDispatch, useAppSelector } from "../../core/store/hooks";
 
 import transformAddress, { RawAddressModel } from "../../core/models/address";
@@ -33,17 +28,13 @@ export default function useAddressBook() {
     },
     /** Loads saved addresses from the indexedDB */
     loadSavedAddresses: async () => {
-      const saved: RawAddressModel[] | null = await databaseService.getItem(
-        "addresses"
-      );
+      const saved: RawAddressModel[] | null = await databaseService.getItem("addresses");
       // No saved item found, exit this function
       if (!saved || !Array.isArray(saved)) {
         setLoading(false);
         return;
       }
-      dispatch(
-        updateAddresses(saved.map((address) => transformAddress(address)))
-      );
+      dispatch(updateAddresses(saved.map((address) => transformAddress(address))));
       setLoading(false);
     },
     loading,
